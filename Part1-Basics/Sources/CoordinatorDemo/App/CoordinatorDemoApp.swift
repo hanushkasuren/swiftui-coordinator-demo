@@ -17,7 +17,7 @@ struct CoordinatorDemoApp: App {
 }
 
 struct RootView: View {
-    @StateObject private var coordinator = Coordinator()
+    @State private var coordinator = Coordinator()
 
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -26,7 +26,7 @@ struct RootView: View {
                     destination(for: route)
                 }
         }
-        .environmentObject(coordinator)
+        .environment(coordinator)
     }
 
     @ViewBuilder

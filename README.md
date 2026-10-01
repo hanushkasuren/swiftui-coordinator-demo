@@ -17,4 +17,4 @@ Coming soon.
 ## Requirements
 
 - Xcode 16 or later
-- iOS 16 or later
+- iOS 17 or later

@@ -5,11 +5,12 @@
 //  Created by Hanushka Suren on 29/09/2026.
 //
 
-import XCTest
+import Testing
 @testable import CoordinatorDemo
 
-final class CoordinatorTests: XCTestCase {
-    func test_backToRoot_clearsTheWholePath() {
+@MainActor
+struct CoordinatorTests {
+    @Test func backToRootClearsTheWholePath() {
         // Prepare
         let coordinator = Coordinator()
         coordinator.show(.itemDetail(id: 1))
@@ -19,10 +20,10 @@ final class CoordinatorTests: XCTestCase {
         coordinator.backToRoot()
 
         // Then
-        XCTAssertTrue(coordinator.path.isEmpty)
+        #expect(coordinator.path.isEmpty)
     }
 
-    func test_show_ignoresTheSameRouteTwiceInARow() {
+    @Test func showIgnoresTheSameRouteTwiceInARow() {
         // Prepare
         let coordinator = Coordinator()
 
@@ -31,10 +32,10 @@ final class CoordinatorTests: XCTestCase {
         coordinator.show(.itemDetail(id: 1))
 
         // Then
-        XCTAssertEqual(coordinator.path, [.itemDetail(id: 1)])
+        #expect(coordinator.path == [.itemDetail(id: 1)])
     }
 
-    func test_back_removesOnlyTheTopScreen() {
+    @Test func backRemovesOnlyTheTopScreen() {
         // Prepare
         let coordinator = Coordinator()
         coordinator.show(.itemDetail(id: 1))
@@ -44,6 +45,6 @@ final class CoordinatorTests: XCTestCase {
         coordinator.back()
 
         // Then
-        XCTAssertEqual(coordinator.path, [.itemDetail(id: 1)])
+        #expect(coordinator.path == [.itemDetail(id: 1)])
     }
 }

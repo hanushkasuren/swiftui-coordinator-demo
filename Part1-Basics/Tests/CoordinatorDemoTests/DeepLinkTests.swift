@@ -5,11 +5,12 @@
 //  Created by Hanushka Suren on 29/09/2026.
 //
 
-import XCTest
+import Testing
 @testable import CoordinatorDemo
 
-final class DeepLinkTests: XCTestCase {
-    func test_deepLink_replacesThePathInOneStep() {
+@MainActor
+struct DeepLinkTests {
+    @Test func deepLinkReplacesThePathInOneStep() {
         // Prepare
         let coordinator = Coordinator()
         coordinator.show(.settings)
@@ -18,10 +19,10 @@ final class DeepLinkTests: XCTestCase {
         coordinator.path = [.itemDetail(id: 42), .editItem(id: 42)]
 
         // Then
-        XCTAssertEqual(coordinator.path, [.itemDetail(id: 42), .editItem(id: 42)])
+        #expect(coordinator.path == [.itemDetail(id: 42), .editItem(id: 42)])
     }
 
-    func test_back_onAnEmptyPath_doesNothing() {
+    @Test func backOnAnEmptyPathDoesNothing() {
         // Prepare
         let coordinator = Coordinator()
 
@@ -29,6 +30,6 @@ final class DeepLinkTests: XCTestCase {
         coordinator.back()
 
         // Then
-        XCTAssertTrue(coordinator.path.isEmpty)
+        #expect(coordinator.path.isEmpty)
     }
 }

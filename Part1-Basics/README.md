@@ -5,7 +5,7 @@ A small runnable project for the companion article, "Your SwiftUI Views Should N
 It builds a coordinator for a single `NavigationStack` in four steps, exactly as the article does.
 
 - `Route` describes every screen you can push as a case in a `Hashable` enum
-- `Coordinator` owns the navigation path and exposes `show(_:)`, `back()` and `backToRoot()`
+- `Coordinator` is an `@Observable` class that owns the navigation path and exposes `show(_:)`, `back()` and `backToRoot()`
 - `RootView` binds `NavigationStack(path:)` to the coordinator and maps each route to a screen in one place
 - The screens ask the coordinator to navigate instead of building the next screen themselves
 
@@ -14,7 +14,7 @@ It builds a coordinator for a single `NavigationStack` in four steps, exactly as
 ## Requirements
 
 - Xcode 16 or later
-- iOS 16 or later
+- iOS 17 or later, for the `@Observable` macro
 
 ## Run it
 
@@ -29,4 +29,4 @@ If a row is tapped twice before the push finishes, only one detail screen is pus
 
 ## Tests
 
-Run the tests with Cmd+U. They cover pushing, going back, returning to the root, ignoring duplicate taps, and replacing the whole path for a deep link. No UI is launched, because navigation is plain state.
+Run the tests with Cmd+U. They use Swift Testing and cover pushing, going back, returning to the root, ignoring duplicate taps, and replacing the whole path for a deep link. No UI is launched, because navigation is plain state.

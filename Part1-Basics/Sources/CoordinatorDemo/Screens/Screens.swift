@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
-    @EnvironmentObject private var coordinator: Coordinator
+    @Environment(Coordinator.self) private var coordinator
 
     var body: some View {
         List(1...20, id: \.self) { id in
@@ -18,17 +18,15 @@ struct ItemListView: View {
         }
         .navigationTitle("Items")
         .toolbar {
-            Button {
+            Button("Settings", systemImage: "gear") {
                 coordinator.show(.settings)
-            } label: {
-                Label("Settings", systemImage: "gear")
             }
         }
     }
 }
 
 struct ItemDetailView: View {
-    @EnvironmentObject private var coordinator: Coordinator
+    @Environment(Coordinator.self) private var coordinator
     let id: Int
 
     var body: some View {
@@ -44,7 +42,7 @@ struct ItemDetailView: View {
 }
 
 struct EditItemView: View {
-    @EnvironmentObject private var coordinator: Coordinator
+    @Environment(Coordinator.self) private var coordinator
     let id: Int
 
     var body: some View {

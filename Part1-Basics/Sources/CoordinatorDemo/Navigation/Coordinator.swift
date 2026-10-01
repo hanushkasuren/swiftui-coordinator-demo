@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-final class Coordinator: ObservableObject {
-    @Published var path: [Route] = []
+@MainActor
+@Observable
+final class Coordinator {
+    var path: [Route] = []
 
     func show(_ route: Route) {
         guard path.last != route else { return }
