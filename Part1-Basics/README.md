@@ -23,7 +23,7 @@ It builds a coordinator for a single `NavigationStack` in four steps, exactly as
 
 ## What to try
 
-Tap an item to open its detail screen, then tap Edit. Save and Close jumps straight back to the list with `backToRoot()`, even though it is two screens deep. The system back button and the swipe back gesture still work, because `NavigationStack` writes back into the coordinator's path when the user pops a screen.
+Tap an item to open its detail screen, then tap Edit. Cancel goes back one screen with `back()`. Save and Close jumps straight back to the list with `backToRoot()`, even though it is two screens deep. The system back button and the swipe back gesture still work, because `NavigationStack` writes back into the coordinator's path when the user pops a screen.
 
 If a row is tapped twice before the push finishes, only one detail screen is pushed. That is the duplicate guard in `show(_:)`.
 

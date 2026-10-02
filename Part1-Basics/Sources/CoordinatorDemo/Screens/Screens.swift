@@ -46,8 +46,13 @@ struct EditItemView: View {
     let id: Int
 
     var body: some View {
-        Button("Save and Close") {
-            coordinator.backToRoot()
+        VStack(spacing: 16) {
+            Button("Save and Close") {
+                coordinator.backToRoot()
+            }
+            Button("Cancel") {
+                coordinator.back()
+            }
         }
         .navigationTitle("Edit Item \(id)")
     }
