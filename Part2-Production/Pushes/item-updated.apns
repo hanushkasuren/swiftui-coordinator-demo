@@ -1,0 +1,12 @@
+{
+    "Simulator Target Bundle": "com.example.CoordinatorProdDemo",
+    "aps": {
+        "alert": {
+            "title": "Item updated",
+            "body": "Item 42 has changed. Tap to see it."
+        },
+        "sound": "default"
+    },
+    "action": "item_updated",
+    "entityId": "42"
+}

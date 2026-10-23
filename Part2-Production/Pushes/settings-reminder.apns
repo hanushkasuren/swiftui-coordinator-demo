@@ -1,0 +1,11 @@
+{
+    "Simulator Target Bundle": "com.example.CoordinatorProdDemo",
+    "aps": {
+        "alert": {
+            "title": "Check your settings",
+            "body": "Choose which notifications you want to get."
+        },
+        "sound": "default"
+    },
+    "action": "settings_reminder"
+}
