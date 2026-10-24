@@ -82,6 +82,7 @@ extension TabCoordinator {
         }
 
         selectedTab = tab
+        
         switch tab {
         case .home:
             homePath = routes
