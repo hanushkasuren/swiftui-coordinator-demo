@@ -55,6 +55,6 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
 
     private func open(action: String?, entityId: String?) {
         guard let link = NotificationLink(action: action, entityId: entityId) else { return }
-        tabs.open(link.route, in: link.tab)
+        tabs.open(link.routes, in: link.tab)
     }
 }

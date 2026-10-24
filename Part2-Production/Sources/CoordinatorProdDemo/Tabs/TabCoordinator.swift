@@ -20,7 +20,7 @@ final class TabCoordinator {
     var accountPath: [Route] = []
     private(set) var isMainVisible = false
 
-    @ObservationIgnored private var pendingLink: (route: Route, tab: AppTab)?
+    @ObservationIgnored private var pendingLink: (routes: [Route], tab: AppTab)?
 
     private let onLogout: () -> Void
 
@@ -75,13 +75,19 @@ extension TabCoordinator {
 }
 
 extension TabCoordinator {
-    func open(_ route: Route, in tab: AppTab) {
+    func open(_ routes: [Route], in tab: AppTab) {
         guard isMainVisible else {
-            pendingLink = (route, tab)
+            pendingLink = (routes, tab)
             return
         }
 
-        show(route, in: tab)
+        selectedTab = tab
+        switch tab {
+        case .home:
+            homePath = routes
+        case .account:
+            accountPath = routes
+        }
     }
 
     func mainDidAppear() {
@@ -89,7 +95,7 @@ extension TabCoordinator {
 
         if let pendingLink {
             self.pendingLink = nil
-            show(pendingLink.route, in: pendingLink.tab)
+            open(pendingLink.routes, in: pendingLink.tab)
         }
     }
 }

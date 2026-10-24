@@ -14,7 +14,16 @@ struct NotificationLinkTests {
         let link = NotificationLink(action: "item_updated", entityId: "42")
 
         // Then
-        #expect(link?.route == .itemDetail(id: 42))
+        #expect(link?.routes == [.itemDetail(id: 42)])
+        #expect(link?.tab == .home)
+    }
+
+    @Test func editItemOpensTheEditScreenAboveTheItemOnHome() {
+        // When
+        let link = NotificationLink(action: "edit_item", entityId: "42")
+
+        // Then
+        #expect(link?.routes == [.itemDetail(id: 42), .editItem(id: 42)])
         #expect(link?.tab == .home)
     }
 
@@ -23,7 +32,7 @@ struct NotificationLinkTests {
         let link = NotificationLink(action: "settings_reminder", entityId: nil)
 
         // Then
-        #expect(link?.route == .settings)
+        #expect(link?.routes == [.settings])
         #expect(link?.tab == .account)
     }
 

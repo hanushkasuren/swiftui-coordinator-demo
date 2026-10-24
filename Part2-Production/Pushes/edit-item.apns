@@ -1,0 +1,12 @@
+{
+    "Simulator Target Bundle": "com.example.CoordinatorProdDemo",
+    "aps": {
+        "alert": {
+            "title": "Item needs a new name",
+            "body": "Item 42 needs updating. Tap to edit it."
+        },
+        "sound": "default"
+    },
+    "action": "edit_item",
+    "entityId": "42"
+}

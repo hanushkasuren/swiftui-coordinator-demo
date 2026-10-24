@@ -15,7 +15,7 @@ struct TabCoordinatorTests {
         let tabs = TabCoordinator(onLogout: {})
 
         // When
-        tabs.open(.itemDetail(id: 42), in: .home)
+        tabs.open([.itemDetail(id: 42), .editItem(id: 42)], in: .home)
 
         // Then
         #expect(tabs.homePath.isEmpty)
@@ -24,7 +24,7 @@ struct TabCoordinatorTests {
         tabs.mainDidAppear()
 
         // Then
-        #expect(tabs.homePath == [.itemDetail(id: 42)])
+        #expect(tabs.homePath == [.itemDetail(id: 42), .editItem(id: 42)])
     }
 
     @Test func linkOpensStraightAwayWhenTabsAreVisible() {
@@ -33,7 +33,7 @@ struct TabCoordinatorTests {
         tabs.mainDidAppear()
 
         // When
-        tabs.open(.settings, in: .account)
+        tabs.open([.settings], in: .account)
 
         // Then
         #expect(tabs.selectedTab == .account)
@@ -47,10 +47,24 @@ struct TabCoordinatorTests {
         tabs.logout()
 
         // When
-        tabs.open(.itemDetail(id: 42), in: .home)
+        tabs.open([.itemDetail(id: 42)], in: .home)
 
         // Then
         #expect(tabs.homePath.isEmpty)
+    }
+
+    @Test func linkReplacesWhatTheTabWasShowing() {
+        // Given
+        let tabs = TabCoordinator(onLogout: {})
+        tabs.mainDidAppear()
+        tabs.show(.itemDetail(id: 1), in: .home)
+        tabs.show(.editItem(id: 1), in: .home)
+
+        // When
+        tabs.open([.itemDetail(id: 42), .editItem(id: 42)], in: .home)
+
+        // Then
+        #expect(tabs.homePath == [.itemDetail(id: 42), .editItem(id: 42)])
     }
 
     @Test func showPushesOntoTheSelectedTab() {

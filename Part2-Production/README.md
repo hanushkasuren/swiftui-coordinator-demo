@@ -31,7 +31,7 @@ Tap Log Out on Account. Every tab is cleared and the app goes back to login.
 
 ## Push notifications in the simulator
 
-The `Pushes` folder has two sample notifications. They target the bundle identifier `com.example.CoordinatorProdDemo`, so change `Simulator Target Bundle` in both files if yours is different.
+The `Pushes` folder has three sample notifications. They target the bundle identifier `com.example.CoordinatorProdDemo`, so change `Simulator Target Bundle` in each file if yours is different.
 
 Send one by dragging the file onto the running simulator, or from Terminal inside the `Part2-Production` folder.
 
@@ -40,5 +40,7 @@ xcrun simctl push booted com.example.CoordinatorProdDemo Pushes/item-updated.apn
 ```
 
 To see a notification wait for the tabs, stop the app in Xcode, send `item-updated.apns` and tap the notification. The app starts on the launch screen, goes to login, and only opens item 42 on the Home tab after you sign in.
+
+`edit-item.apns` opens the edit screen for item 42 on the Home tab. Tap back and you land on item 42's detail screen, then the list, because a notification replaces the tab's whole path.
 
 `settings-reminder.apns` opens Settings on the Account tab.

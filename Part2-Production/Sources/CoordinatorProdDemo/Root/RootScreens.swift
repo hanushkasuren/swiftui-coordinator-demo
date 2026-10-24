@@ -20,6 +20,7 @@ struct LaunchView: View {
                 } catch {
                     return
                 }
+                
                 onFinish(false)
             }
     }
